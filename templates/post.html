@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block post %}
+<section id="post">
+    <div class="post-details">
+        <div class="post-thumbnail">
+            <img class="thumbnail" src="/{{post.thumbnail}}" alt="">
+        </div>
+        <div class="post-details-content">  
+            <div class="post-title">
+                <h1>{{post.title}}</h1>
+                <div class="post-config-info">
+                    {{post.created_at | date:"F d, Y" }} <span><i class="fa-solid fa-circle"></i></span>&nbsp;&nbsp;{{post.time_to_read}} Min Read <span><i class="fa-regular fa-comment"></i></span>1<span><i class="fa-solid fa-fire"></i></span>{{post.views}}
+                </div>
+            </div>
+            <div class="read-post">
+                {{post.content | safe}}
+            </div>
+            <div class="categories">
+                <label>Categorized in:</label>
+                {% include "tags.html" %}
+            </div>
+        </div>
+    </div>
+</section>
+{% include "comment.html" %}
+{% endblock post %}

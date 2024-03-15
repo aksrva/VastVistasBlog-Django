@@ -1,0 +1,13 @@
+{% block social_links %}
+<div class="social-links">
+    {% for link in social_links %}
+        <a href="#" class="social-link">
+            {% if link.icon_image %}
+                <img src="/{{link.icon_image}}/">
+            {% else %}
+                {{link.html_icon | safe}}
+            {% endif %}
+        </a>
+    {% endfor %}
+</div>
+{% endblock social_links %}

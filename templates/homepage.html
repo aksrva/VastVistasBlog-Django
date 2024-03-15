@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block homepage %}
+{% if posts %}
+<section id="post-list">
+    {% for post in posts %}
+    <div class="post">
+        <div class="image-title">
+            <div class="image" data-imageBorder="{{post.image_border_color}}">
+                <a href="/post/{{post.slug}}/">
+                    <img src="{{post.compress_image}}" alt="">
+                </a>
+            </div>
+            <div class="title">
+                <h2><a href="/post/{{post.slug}}/">{{post.title}}</a></h2>
+                <div class="post-config-info">
+                    {{post.created_at | date:"F d, Y" }} <span><i class="fa-solid fa-circle"></i></span>&nbsp;&nbsp;{{post.time_to_read}} Min Read <span><i class="fa-regular fa-comment"></i></span>1<span><i class="fa-solid fa-fire"></i></span>{{post.views}}
+                </div>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>{{post.meta_content}}</p>
+        </div>
+        <div class="post-tag-author">
+            {% include "tags.html" %}
+            <a href="#">
+                <div class="author">
+                    <div class="author-image">
+                        <img src="{{post.author.image}}" alt="">
+                    </div>
+                    <div class="author-name">
+                        {{post.author.first_name}} {{post.author.last_name}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="pagination">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}" id="prev" class="prev">Previous</a>
+        {% endif %}
+        <span>Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}" id="next" class="next">Next</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<section id="subscribe">
+    <div class="subscribe-card">
+        <div class="blog-logo subscribe-title">
+            Subscribe to
+            {% include "logo.html" %}
+        </div>
+        <div class="subscribe-content">
+                Get the latest posts delivered right to your email.
+        </div>
+        <div class="subscribe-form">
+            <form action="#">
+                <input type="email" name="email" id="email" placeholder="Enter your email address">
+                <div class="btn">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="subscribe-social-links">
+            {% include "social_links.html" %}
+        </div>
+    </div>
+</section>
+{% endblock homepage %}

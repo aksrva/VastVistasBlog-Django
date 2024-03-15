@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>
+        {% if post %}
+            {{post.title | safe}}
+        {% else %}
+            {{configurations.meta_title}}
+        {% endif %}
+    </title>
+</head>
+<body>
+
+    <header>
+        <section class="social-logo-search">
+            {% include "social_links.html" %}
+            <div class="blog-logo">
+                {% include "logo.html" %}
+            </div>
+            {% if configurations.is_search %}
+                <div class="search-btn" id="search-btn" title="Shortcut key: Ctrl + /">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            {% endif %}
+        </section>
+        <nav>
+            <ul>
+                {% for item in navbar.all %}
+                    <li>
+                        <a href="{{item.nav_link}}">{{item.title}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block homepage %}{% endblock homepage %}
+    {% block post %}{% endblock post %}
+    {% block login %}{% endblock login %}
+    {% block register %}{% endblock register %}
+    {% if configurations.is_search %}
+        {% include "search.html" %}
+    {% endif %}
+
+     <footer>
+        <div class="blog-logo">
+            {% include "logo.html" %}
+        </div>
+        <div class="footer-content">
+            <p>Developed By <a href="{{configurations.developer_links}}">{{configurations.developer_name}}</a></p>
+            <p>copyright &copy; {{current_year}}</p>
+        </div>
+
+     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let tags = document.querySelectorAll(".tag");
+            tags.forEach((tag) => {
+                tag.addEventListener("mouseover", () => {
+                    tag.style.color = tag.getAttribute("data-color");
+                });
+                tag.addEventListener("mouseout", () => {
+                    tag.style.color = "#596172";
+                });
+            });
+            {% if configurations.is_search %}
+            let searchBtn = document.getElementById("search-btn");
+            let searchForm = document.getElementById("search");
+            let closeBtn = document.getElementById("close-form");
+            let searchBox = document.getElementById("search-box");
+            searchBtn.addEventListener("click", () => {
+                document.getElementById('search').style.visibility = 'visible';
+                searchBox.focus();
+            });
+            closeBtn.addEventListener("click", () => {
+                searchForm.style.visibility = 'hidden';
+                searchBox.blur();
+            });
+            document.addEventListener("keyup", (event) => {
+                if (event.key === "Escape" || event.key === "Esc" || (event.ctrlKey && event.shiftKey && event.key === "?")){
+                    event.preventDefault();
+                    searchForm.style.visibility = 'hidden';
+                    searchBox.blur();
+                }
+                if (event.ctrlKey && event.key === "/") {
+                    event.preventDefault();
+                    searchForm.style.visibility = "visible";
+                    searchBox.focus();
+                }
+            });
+            {% endif %}
+        })
+        {% if posts %}
+        document.addEventListener("DOMContentLoaded", () => {
+            const posts = document.querySelectorAll(".post .image-title .image")
+            posts.forEach((post) => {
+                const borderColor = post.getAttribute("data-imageBorder");
+                post.style.borderColor = "#" + borderColor;
+                post.style.borderWidth = "2px";
+                post.style.borderStyle = "solid"
+            })
+        })
+        {% endif %}
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const navUl = document.querySelector("nav ul");
+            if(navUl.scrollWidth > navUl.clientWidth) {
+                navUl.style.justifyContent = "start";
+            }else {
+                navUl.style.justifyContent = "center";
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<section id="comment">
+    <div class="comment-details">
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment-list">
+                    <div class="reply-comment">
+                        <div class="comment-user-info">
+                            <b>{{comment.user.first_name | capfirst}} {{comment.user.last_name | capfirst}}</b> on <span>{{comment.created_at | date:"F d, Y" }}</span>
+                        </div>
+                        <div class="comment-text">
+                            {{comment.comment}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="comment-form-label">
+        <h2>Leave a Reply</h2>
+        <div class="comment-form">
+            <form id="comment-form">
+                {% csrf_token %}
+                <div class="textarea">
+                    <textarea name="comment" cols="30" rows="10" placeholder="Write Comment..." id="comment-box" required></textarea>
+                </div>
+                <div class="user-details">
+                    <input type="text" name="username" placeholder="Enter Name" value="{{saved_user_info.user_name}}" required>
+                    <input type="email" name="email" placeholder="Email" value="{{saved_user_info.email}}" required>
+                </div>
+                <div class="web-input">
+                    <input type="text" name="website" placeholder="Website" value={{saved_user_info.website}}>
+                </div>
+                <div class="save-user">
+                    <input type="checkbox" name="save-user" id="save-info" {% if saved_user_info %}checked{% endif %}><span> Save my name, email, and website in this browser for the next time I comment.</span>
+                </div>
+                <button id="comment-btn" type="submit">Post Comment</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        commentForm = document.getElementById("comment-form");
+        commentForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            postId = "{{post.id}}";
+            formData.append('postId', postId)
+            const URL = "/create-comment/"
+            fetch(URL, {
+                method: 'POST',
+                body: formData,
+                credentials: "same-origin",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            }).then(response => {
+                if (!response.ok) {
+                    throw response;
+                }
+                return response.json();
+            }).then(data => {
+                saveInfoCheck = document.getElementById("save-info");
+                if (saveInfoCheck && saveInfoCheck.checked) {
+                    document.getElementById("comment-box").value = "";
+                }else {
+                    commentForm.reset();
+                }
+            }).catch(error => {
+                if (error.json) {
+                    error.json().then(err => {
+                        alert(err.message)
+                    })
+                }else {
+                    console.log("Server Error", error)
+                }
+            })
+        });
+    })
+</script>

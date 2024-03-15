@@ -1,0 +1,143 @@
+:root {
+    /* Font weight */
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+    /* Font Style  */
+    --font-style-normal: normal;
+    --font-style-italic: italic;
+    /* Font Family */
+    --font-family-poppins: "Poppins", sans-serif;
+    /* Color */
+    --bg-color: #f9f9fe;
+    --main-color: #ff4c60;
+    --secondary-color: #65ebe7;;
+    --black-color: #4b4870;
+    --title-color: #454360;
+    --text-color: #596172;
+    --border-color: #eee;
+    --input-bg-color: #f9f9fe;
+    --post-bg-color: #ffffff;
+    --box-shadow: 0px 3px 5px -1px rgba(7,10,25,.2);
+    /* Button */
+    --search-btn-height: 48px;
+    --search-btn-width: 48px;
+    /* Border */
+    --border-radius-50-per: 50%;
+    /* Transition */
+    --transition: all 0.2s linear
+}
+
+.poppins-thin {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-thin);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-extralight {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-extralight);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-light {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-light);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-regular {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-regular);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-medium {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-medium);;
+    font-style: var(--font-style-normal);
+}
+
+.poppins-semibold {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-semibold);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-bold {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-extrabold {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-extrabold);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-black {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-black);
+    font-style: var(--font-style-normal);
+}
+
+.poppins-thin-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-thin);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-extralight-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-extralight);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-light-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-light);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-regular-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-regular);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-medium-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-medium);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-semibold-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-semibold);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-bold-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-extrabold-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-extrabold);
+    font-style: var(--font-family-italic);
+}
+
+.poppins-black-italic {
+    font-family: var(--font-family-poppins);
+    font-weight: var(--font-weight-black);
+    font-style: var(--font-family-italic);
+}

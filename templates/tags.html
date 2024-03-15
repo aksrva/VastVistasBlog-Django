@@ -1,0 +1,9 @@
+<div class="tags">
+    {% for category in post.category.all %}
+    <a href="#">
+        <div class="tag" data-color="#{{category.color}}">
+            <span style="color:#{{category.color}}">#</span> {{category.category}}
+        </div>
+    </a>
+    {% endfor %}
+</div>

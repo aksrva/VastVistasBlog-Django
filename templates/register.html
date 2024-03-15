@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block register %}
+<section>
+    <form method="POST" class="register-login-form">
+        {% csrf_token %}
+        <h2>Register</h2>
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="submit" value="Register">
+    </form>
+</section>
+{% endblock register %}
