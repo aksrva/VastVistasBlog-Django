@@ -7,5 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vastvistas_web.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='user_logout'),
-    path('user/', include('user.urls')),
+    path('user/', include('users.urls')),
 ]

@@ -1,6 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-from user.models import User
+from users.models import User
 
 
 class SocialLinks(models.Model):

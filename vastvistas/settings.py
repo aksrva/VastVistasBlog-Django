@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'rest_framework.authtoken',
+    'users',
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'vastvistas_web.backends.EmailAuthentication',
+    'users.backends.EmailAuthentication',
 )
 
 MIDDLEWARE = [
@@ -96,7 +97,7 @@ REST_FRAMEWORK = {
 }
 
 WSGI_APPLICATION = 'vastvistas.wsgi.application'
-AUTH_USER_MODEL = 'vastvistas_web.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

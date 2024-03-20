@@ -1,5 +1,5 @@
 from django.contrib import admin
-from vastvistas_web.models import User
+from .models import User
 from django.contrib.auth.admin import UserAdmin
 
 

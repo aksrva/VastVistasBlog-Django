@@ -1,29 +1,12 @@
 from django.contrib import admin
 from vastvistas_web.models import (
-    PostCategory, User, SocialLinks, Navbar, Configuration, Post, PostComment)
-from django.contrib.auth.admin import UserAdmin
+    PostCategory, SocialLinks, Navbar, Configuration, Post, PostComment)
 import math
 from PIL import Image
 from io import BytesIO
 import sys
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.safestring import mark_safe
-
-
-class CustomUserAdmin(UserAdmin):
-    list_display = ('pk', 'first_name', 'last_name', 'phone_number', 'email')
-    fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {
-            'fields': (
-                'username', 'phone_number', 'is_active', 'first_name',
-                'last_name', 'image'
-            )
-        }),
-        ('Permissions', {'fields': ('is_staff', 'is_superuser',
-                                    'user_permissions')}),
-        ('Group Permissions', {'fields': ('groups', )}),
-    )
 
 
 class SocialLinksAdmin(admin.ModelAdmin):
@@ -105,7 +88,6 @@ class PostCategoryAdmin(admin.ModelAdmin):
                     "color", "created_at", "updated_at")
 
 
-admin.site.register(User, CustomUserAdmin)
 admin.site.register(SocialLinks, SocialLinksAdmin)
 admin.site.register(Navbar, NavbarAdmin)
 admin.site.register(Configuration, ConfigurationAdmin)
