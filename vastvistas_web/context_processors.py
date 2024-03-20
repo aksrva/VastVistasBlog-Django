@@ -1,4 +1,4 @@
-from vastvistas.models import Configuration, Navbar, SocialLinks
+from vastvistas_web.models import Configuration, Navbar, SocialLinks
 from datetime import datetime
 
 

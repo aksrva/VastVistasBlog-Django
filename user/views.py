@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from rest_framework import status
-from vastvistas.serializers import UserSerializer
+from vastvistas_web.serializers import UserSerializer
 from django.contrib.auth import login, authenticate, logout
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response

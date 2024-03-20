@@ -1,5 +1,5 @@
 from django.contrib import admin
-from vastvistas.models import (
+from vastvistas_web.models import (
     PostCategory, User, SocialLinks, Navbar, Configuration, Post, PostComment)
 from django.contrib.auth.admin import UserAdmin
 import math

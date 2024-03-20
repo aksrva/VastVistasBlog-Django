@@ -1,11 +1,11 @@
-from django.urls import path
-from vastvistas.views import (
-    ConfigurationViewset,
-    home, post, create_comment, RegisterUser, login_view, logout_view)
+from django.contrib import admin
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
+
 urlpatterns = [
-    path('', home),
-    path('create-comment/', create_comment),
-    path('post/<str:slug>/', post),
-    path("api/config/", ConfigurationViewset.as_view({'get': 'list'})),
-    # path('logout/', logout_view)
+    path('admin/', admin.site.urls),
+    path('', include('vastvistas_web.urls')),
+    path('logout/', auth_views.LogoutView.as_view(), name='user_logout'),
+    path('user/', include('user.urls')),
 ]

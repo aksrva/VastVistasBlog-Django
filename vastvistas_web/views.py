@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from rest_framework import mixins, viewsets, status
-from vastvistas.models import Configuration, Navbar, Post, PostComment, User
-from vastvistas.serializers import (ConfigurationSerializer, NavbarSerializer,
-                                    UserSerializer)
+from vastvistas_web.models import (Configuration, Navbar, Post, PostComment,
+                                   User)
+from vastvistas_web.serializers import (ConfigurationSerializer,
+                                        NavbarSerializer, UserSerializer)
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from django.db import IntegrityError
@@ -132,8 +133,7 @@ def create_comment(request):
         return JsonResponse(
             {"message": (
                 "Username or Email Id already exists. "
-                "Please choose a different username."
-                )},
+                "Please choose a different username.")},
             status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -1,4 +1,4 @@
-from vastvistas.models import User
+from vastvistas_web.models import User
 
 
 class EmailAuthentication(object):
