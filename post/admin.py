@@ -1,32 +1,11 @@
 from django.contrib import admin
-from vastvistas_web.models import (
-    PostCategory, SocialLinks, Navbar, Configuration, Post, PostComment)
+from post.models import PostCategory, Post, PostComment
 import math
 from PIL import Image
 from io import BytesIO
 import sys
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.safestring import mark_safe
-
-
-class SocialLinksAdmin(admin.ModelAdmin):
-    list_display = ("title", "icon_image", "html_icon", "is_active",
-                    "priority", "created_at", "updated_at")
-
-
-class NavbarAdmin(admin.ModelAdmin):
-    list_display = ("title", "nav_link", "is_active", "priority",
-                    "created_at", "updated_at")
-    actions = ["active_deactive_navbar"]
-
-    def active_deactive_navbar(self, request, queryset):
-        for row in queryset:
-            row.is_active = not row.is_active
-            row.save()
-
-
-class ConfigurationAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "meta_title")
 
 
 def compress_image(uploadedImage):
@@ -88,9 +67,6 @@ class PostCategoryAdmin(admin.ModelAdmin):
                     "color", "created_at", "updated_at")
 
 
-admin.site.register(SocialLinks, SocialLinksAdmin)
-admin.site.register(Navbar, NavbarAdmin)
-admin.site.register(Configuration, ConfigurationAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(PostComment, PostCommentAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)

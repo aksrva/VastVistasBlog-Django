@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from rest_framework import status
-from vastvistas_web.serializers import UserSerializer
+from post.serializers import UserSerializer
 from django.contrib.auth import login, authenticate, logout
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -19,7 +19,6 @@ def login_view(request):
             request,
             username=request.POST.get("email"),
             password=request.POST.get("password"))
-        print(user)
         if user is not None:
             login(request, user)
             return redirect("/")
@@ -35,7 +34,6 @@ class RegisterUser(APIView):
         return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()

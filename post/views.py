@@ -1,10 +1,9 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from rest_framework import mixins, viewsets, status
-from vastvistas_web.models import (Configuration, Navbar, Post, PostComment,
-                                   User)
-from vastvistas_web.serializers import (ConfigurationSerializer,
-                                        NavbarSerializer, UserSerializer)
+from rest_framework import status
+from configuration.models import Configuration
+from post.models import Post, PostComment, User
+from post.serializers import UserSerializer
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from django.db import IntegrityError
@@ -55,12 +54,14 @@ class RegisterUser(APIView):
 
 def home(request):
     config = Configuration.objects.last()
-    posts = Post.objects.filter(
-        is_active=True, is_approved=True, status=1).order_by("priority")
-    paginator = Paginator(posts, config.post_count)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'homepage.html', {"posts": page_obj})
+    if config:
+        posts = Post.objects.filter(
+            is_active=True, is_approved=True, status=1).order_by("priority")
+        paginator = Paginator(posts, config.post_count)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'homepage.html', {"posts": page_obj})
+    return render(request, 'homepage.html',)
 
 
 def post(request, slug):
@@ -137,16 +138,16 @@ def create_comment(request):
             status=status.HTTP_400_BAD_REQUEST)
 
 
-class NavbarViewSet(viewsets.ModelViewSet):
-    serializer_class = NavbarSerializer
+# class NavbarViewSet(viewsets.ModelViewSet):
+#     serializer_class = NavbarSerializer
 
-    def get_queryset(self):
-        return Navbar.objects.filter(is_active=True)
+#     def get_queryset(self):
+#         return Navbar.objects.filter(is_active=True)
 
 
-class ConfigurationViewset(mixins.ListModelMixin,
-                           viewsets.GenericViewSet):
-    serializer_class = ConfigurationSerializer
+# class ConfigurationViewset(mixins.ListModelMixin,
+#                            viewsets.GenericViewSet):
+#     serializer_class = ConfigurationSerializer
 
-    def get_queryset(self):
-        return Configuration.objects.all()[:1]
+#     def get_queryset(self):
+#         return Configuration.objects.all()[:1]

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from vastvistas_web.models import Configuration, SocialLinks, Navbar, User
+from configuration.models import Configuration, SocialLinks, Navbar
+from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
