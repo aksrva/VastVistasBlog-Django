@@ -11,6 +11,10 @@ class SocialLinks(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = "Social Linkss"
+        verbose_name_plural = "Social Links"
+
     def __str__(self):
         return self.title
 
@@ -34,7 +38,7 @@ class Configuration(models.Model):
                               null=True, blank=True)
     meta_title = models.CharField(max_length=255, default="VastVistas",
                                   null=True, blank=True)
-    post_count = models.IntegerField(default=12, null=True)
+    post_count = models.IntegerField(default=12)
     is_search = models.BooleanField(default=True)
     developer_name = models.CharField(max_length=255, default="Akash Kumar")
     developer_links = models.CharField(max_length=255,
