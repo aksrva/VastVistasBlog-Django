@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from users.models import User
 
 
@@ -22,12 +22,12 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
-    content = RichTextField(
-        config_name='awesome_ckeditor', null=True, blank=True)
+    # content = RichTextField(null=True, blank=True)
+    content = CKEditor5Field('Text', config_name='extends')
     meta_content = models.TextField(null=True)
-    thumbnail = models.ImageField(upload_to="static/post/images/",
+    thumbnail = models.ImageField(upload_to="post-thumbnail/",
                                   null=True, blank=True)
-    compress_image = models.ImageField(upload_to="static/post/images/",
+    compress_image = models.ImageField(upload_to="post-thumbnail/",
                                        null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image_border_color = models.CharField(max_length=6, default="ff4c60")

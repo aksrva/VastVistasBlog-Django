@@ -4,6 +4,7 @@ import math
 from PIL import Image
 from io import BytesIO
 import sys
+from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.safestring import mark_safe
 
@@ -49,6 +50,8 @@ class PostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.pk:
             obj.author = request.user
+        if change:
+            obj.slug = slugify(obj.title)
 
         words = obj.content.split()
         num_words = len(words)
@@ -56,6 +59,11 @@ class PostAdmin(admin.ModelAdmin):
         obj.time_to_read = math.ceil(reading_time_minutes)
         obj.compress_image = compress_image(obj.thumbnail)
         super().save_model(request, obj, form, change)
+
+    class Media:
+        css = {
+            'all': ('css/editor-styles.css',)
+        }
 
 
 class PostCommentAdmin(admin.ModelAdmin):

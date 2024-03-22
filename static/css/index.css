@@ -386,6 +386,7 @@ nav ul li a {
     width: 100%;
     transition: var(--transition);
     cursor: pointer;
+    height: 100%;
 }
 .read-post img:hover {
     transform: translateY(-5px);
