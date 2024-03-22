@@ -1,60 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    {% if post %}
-        <link rel="stylesheet" href="{% static 'css/prism.css' %}">
-    {% endif %}
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
         {% if post %}
-            {{post.title | safe}}
-        {% else %}
-            {{configurations.meta_title}}
+            <link rel="stylesheet" href="{% static 'css/prism.css' %}">
         {% endif %}
-    </title>
-</head>
-<body>
-
-    <header>
-        <section class="social-logo-search">
-            {% include "social_links.html" %}
-            <div class="blog-logo">
-                {% include "logo.html" %}
-            </div>
-            {% if configurations.is_search %}
+        <script>
+            if(localStorage.getItem("theme") === "dark") {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        </script>
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <title>
+            {% if post %}
+            {{post.title | safe}}
+            {% else %}
+            {{configurations.meta_title}}
+            {% endif %}
+        </title>
+    </head>
+    <body>
+        
+        <header>
+            <section class="social-logo-search">
+                {% include "social_links.html" %}
+                <div class="blog-logo">
+                    {% include "logo.html" %}
+                </div>
+                {% if configurations.is_search %}
                 <div class="search-btn" id="search-btn" title="Shortcut key: Ctrl + /">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-            {% endif %}
-        </section>
-        <nav>
-            <ul>
-                {% for item in navbar %}
+                {% endif %}
+            </section>
+            <nav>
+                <ul>
+                    {% for item in navbar %}
                     <li>
                         <a href="{{item.nav_link}}">{{item.title}}</a>
                     </li>
-                {% endfor %}
-                <li>
-                    <button id="theme-toggle">Toggle Theme</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    {% block homepage %}{% endblock homepage %}
-    {% block post %}{% endblock post %}
+                    {% endfor %}
+                    <li>
+                        <button id="theme-toggle">Toggle Theme</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        {% block homepage %}{% endblock homepage %}
+        {% block post %}{% endblock post %}
     {% block login %}{% endblock login %}
     {% block register %}{% endblock register %}
     {% if configurations.is_search %}
-        {% include "search.html" %}
+    {% include "search.html" %}
     {% endif %}
-
-     <footer>
+    
+    <footer>
         <div class="blog-logo">
             {% include "logo.html" %}
         </div>
@@ -62,13 +69,13 @@
             <p>Developed By <a href="{{configurations.developer_links}}">{{configurations.developer_name}}</a></p>
             <p>copyright &copy; {{current_year}}</p>
         </div>
-
-     </footer>
+        
+    </footer>
     {% if post %}
-        <script src="{% static 'js/prism.js' %}"></script>
+    <script src="{% static 'js/prism.js' %}"></script>
     {% endif %}
-    <script src="{% static 'js/theme-toggle.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let tags = document.querySelectorAll(".tags .tag");
