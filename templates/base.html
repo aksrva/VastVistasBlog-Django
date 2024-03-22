@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    {% if post %}
+        <link rel="stylesheet" href="{% static 'css/prism.css' %}">
+    {% endif %}
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
     <title>
         {% if post %}
             {{post.title | safe}}
@@ -59,11 +61,13 @@
         </div>
 
      </footer>
-    <script src="{% static 'js/prism.js' %}"></script>
+    {% if post %}
+        <script src="{% static 'js/prism.js' %}"></script>
+    {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            let tags = document.querySelectorAll(".tag");
+            let tags = document.querySelectorAll(".tags .tag");
             tags.forEach((tag) => {
                 tag.addEventListener("mouseover", () => {
                     tag.style.color = tag.getAttribute("data-color");
