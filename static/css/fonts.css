@@ -15,7 +15,7 @@
     /* Font Family */
     --font-family-poppins: "Poppins", sans-serif;
     /* Color */
-    --bg-color: #f9f9fe;
+    /* --bg-color: #f9f9fe;
     --main-color: #ff4c60;
     --secondary-color: #65ebe7;;
     --black-color: #4b4870;
@@ -23,7 +23,16 @@
     --text-color: #596172;
     --border-color: #eee;
     --input-bg-color: #f9f9fe;
-    --post-bg-color: #ffffff;
+    --post-bg-color: #ffffff; */
+    --bg-color: #0d1117;
+    --main-color: #ff4c60;
+    --secondary-color: #2188ff;
+    --black-color: #161b22;
+    --title-color: #c9d1d9;
+    --text-color: #8b949e;
+    --border-color: #30363d;
+    --input-bg-color: #161b22;
+    --post-bg-color: #161b22;
     --box-shadow: 0px 3px 5px -1px rgba(7,10,25,.2);
     /* Button */
     --search-btn-height: 48px;

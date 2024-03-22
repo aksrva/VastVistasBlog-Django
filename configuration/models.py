@@ -43,6 +43,8 @@ class Configuration(models.Model):
     developer_name = models.CharField(max_length=255, default="Akash Kumar")
     developer_links = models.CharField(max_length=255,
                                        default="https://www.lapmos.com/")
+    default_user_image = models.ImageField(upload_to="users/", null=True,
+                                           blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

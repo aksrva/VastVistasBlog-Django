@@ -8,7 +8,7 @@
         <div class="image-title">
             <div class="image" data-imageBorder="{{post.image_border_color}}">
                 <a href="/post/{{post.slug}}/">
-                    <img src="/media/{{post.compress_image}}" alt="">
+                    <img src="{{post.compress_image.url}}" alt="">
                 </a>
             </div>
             <div class="title">
@@ -26,7 +26,15 @@
             <a href="#">
                 <div class="author">
                     <div class="author-image">
-                        <img src="{{post.author.image}}" alt="">
+                        {% if post.author.image %}
+                            <img src="{{post.author.image.url}}" alt="">
+                        {% else %}
+                            {% if configurations.default_user_image %}
+                                <img src="{{configurations.default_user_image.url}}">
+                                {% else %}
+                                <img src="/media/users/user-png-profile.png">
+                            {% endif %}
+                        {% endif %}
                     </div>
                     <div class="author-name">
                         {{post.author.first_name}} {{post.author.last_name}}

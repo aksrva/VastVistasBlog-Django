@@ -214,6 +214,7 @@ nav ul li a {
     font-weight: var(--font-weight-medium);
     cursor: pointer;
     transition: var(--transition);
+    background-color: var(--bg-color);
 }
 .tag:hover {
     transform: translateY(-3px);
@@ -311,7 +312,7 @@ nav ul li a {
     position: relative;
     height: 3rem;
     width: 7rem;
-    border: 2px solid var(--black-color);
+    border: 2px solid var(--bg-color);
 }
 .subscribe-form button[type="submit"] {
     position: absolute;
@@ -319,12 +320,13 @@ nav ul li a {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: var(--black-color);
-    color: var(--post-bg-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     border: none;
     font-size: 0.9rem;
     border: 2px solid var(--black-color);
     transition: var(--transition);
+    cursor: pointer;
 }
 .subscribe-form button[type="submit"]:hover {
     left: -7px;
@@ -470,6 +472,7 @@ footer {
     top: 1rem;
     font-size: 2rem;
     cursor: pointer;
+    color: var(--main-color);
 }
 
 /* Comment */
