@@ -39,6 +39,9 @@
                         <a href="{{item.nav_link}}">{{item.title}}</a>
                     </li>
                 {% endfor %}
+                <li>
+                    <button id="theme-toggle">Toggle Theme</button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -64,6 +67,7 @@
     {% if post %}
         <script src="{% static 'js/prism.js' %}"></script>
     {% endif %}
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
