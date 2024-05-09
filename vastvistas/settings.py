@@ -26,12 +26,13 @@ SECRET_KEY = 'django-insecure-@(^!dk)dal07ko+b+z$5+^6_m104uc5m^jgd1kbi=q%7h%ky9f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.97', '0.0.0.0', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -188,6 +189,7 @@ REST_FRAMEWORK = {
 }
 
 WSGI_APPLICATION = 'vastvistas.wsgi.application'
+ASGI_APPLICATION = 'vastvistas.asgi.application'
 AUTH_USER_MODEL = 'users.User'
 
 # Database
@@ -247,3 +249,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}

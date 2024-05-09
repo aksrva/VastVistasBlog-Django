@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Python Compiler</title>
+</head>
+<body>
+    <textarea id="code" placeholder="Write your Python code here"></textarea>
+    <button onclick="sendCode()">Run Code</button>
+    <pre id="output"></pre>
+    <div id="inputContainer" style="display:none;">
+        <input type="text" id="inputBox" placeholder="Enter input">
+        <button onclick="sendInput()">Submit Input</button>
+    </div>
+
+    <script>
+        var socket = new WebSocket('ws://' + window.location.host + '/ws/code_execution/');
+        
+        socket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            document.getElementById('output').innerText = data.output;
+        };
+
+        function sendCode() {
+            var code = document.getElementById('code').value;
+            socket.send(JSON.stringify({'code': code}));
+        }
+    </script>
+</body>
+</html>
+
+    
+</body>
+</html>

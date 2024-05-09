@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='user_logout'),
     path('user/', include('users.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'),
-         name="ck_editor_5_upload_file")
+         name="ck_editor_5_upload_file"),
+    path("compiler/", include('compiler.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

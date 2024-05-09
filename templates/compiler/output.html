@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Execution Output</title>
+</head>
+<body>
+    <h1>Output</h1>
+    {% if stdout %}
+        <h2>Standard Output</h2>
+        <pre>{{ stdout }}</pre>
+    {% endif %}
+    {% if stderr %}
+        <h2>Errors</h2>
+        <pre>{{ stderr }}</pre>
+    {% endif %}
+    <a href="{% url 'compile_code' %}">Try another code</a>
+</body>
+</html>
